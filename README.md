@@ -4,4 +4,4 @@ Team project for NSWI130
 - Adam Bruzl
 - Jan Jevčák
 - Jan Svojanský
-- Stas Dochynets
+- Stanislav Dochynets
