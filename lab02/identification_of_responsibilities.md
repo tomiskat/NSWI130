@@ -12,7 +12,8 @@ As a teacher, I want to create and manage exams and everything regarding them so
 1. Selects "Create new exam term".
 1. System creates new exam.
 1. If action was unsuccessfull, system displays an error message and returns teacher to step 3.
-    
+   
+
 **Responsibilities:**
 
 ##### **Data Input Responsibilities**
@@ -124,13 +125,41 @@ As a student or teacher, I want to view the exam results so that I can track aca
 
 ---
 
+### Feature: Viewing Exams Student is Enrolled
+
+As a student, I want to view the exams I am enrolled in so that I can track my upcoming exams and their details.
+
+**Feature Breakdown:**
+1. Student navigates to the "Exams" tab on the main page.
+1. Student selects the "My Enrolled Exams" option.
+1. Student retrieves the list of exams the student is currently enrolled in.
+1. The student clicks on any exam entry to view more detailed information.
+1. The system displays further details such as instructor’s contact information, exam format or room number
+
+**Responsibilities:**
+
+##### **Data Input Responsibilities:**
+
+- The student interacts with a clear navigation to access the "My Enrolled Exams" feature.
+
+- Accurately retrieve the list of exams the student is enrolled in, based on the student’s ID or profile information.
+
+##### Data Processing Responsibilities:
+
+- The system queries the database to retrieve all exams the student is registered for, filtering by their student ID.
+- Ensure that only exams where the student is successfully enrolled are shown.
+- Ensure the list is updated in real-time, reflecting any changes such as cancellations, rescheduled exams, or new enrollments.
+
+
+
+---
+
 ## OPTIONAL
 
 ### Feature: Communication with registered students
 As a teacher or student, I want to communicate regarding the exam, so that I can ask questions or provide necessary information.
 
 ---
-
 ### Feature: Statistical reports and history
 As a manager or teacher, I want to generate statistical reports based on historical data, so that I can evaluate performance trends over time.
 
@@ -141,3 +170,7 @@ As a student, I want to be automatically notified about changes regarding my exa
 ---
 ### Feature: Cancelling all exam terms on a given day
 As a faculty board, we want to be able to cancel all exam terms scheduled on a specific day, so that we can quickly respond to unexpected events, such as floods or school shootings.
+
+---
+### Feature: Registration on the Waiting List
+As a student, I want to register on the waiting list for an exam when it is full so that I can still have a chance to attend the exam if a spot opens up.
