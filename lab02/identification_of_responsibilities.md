@@ -160,7 +160,6 @@ As a student, I want to view the exams I am enrolled in so that I can track my u
 As a teacher or student, I want to communicate regarding the exam, so that I can ask questions or provide necessary information.
 
 ---
-
 ### Feature: Statistical reports and history
 As a manager or teacher, I want to generate statistical reports based on historical data, so that I can evaluate performance trends over time.
 
@@ -171,3 +170,7 @@ As a student, I want to be automatically notified about changes regarding my exa
 ---
 ### Feature: Cancelling all exam terms on a given day
 As a faculty board, we want to be able to cancel all exam terms scheduled on a specific day, so that we can quickly respond to unexpected events, such as floods or school shootings.
+
+---
+### Feature: Registration on the Waiting List
+As a student, I want to register on the waiting list for an exam when it is full so that I can still have a chance to attend the exam if a spot opens up.
