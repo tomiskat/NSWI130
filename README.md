@@ -9,7 +9,7 @@
 
 
 **Reading model**
-- [exams-managment-system](documentation.html)
+- [exams-managment-system](lab03/documentation.html)
 - running model using docker
     - clone repository
     - download and run docker deamon (https://www.docker.com/)
