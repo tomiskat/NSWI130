@@ -1,21 +1,10 @@
 ## Components
 ### userInterface
-![](embed:userInterface)
-
-### examsWriter
-![](embed:examsWriter)
-
-### registrationWriter
-![](embed:registrationWriter)
-
-### resultsWriter
-![](embed:resultsWriter)
-
-### resultsReader
 ![](embed:resultsReader)
 
-### registeredExamsReader
-![](embed:registeredExamsReader)
+### examsWriter
+![](embed:registrationManager)
 
-### managedExamsReader
-![](embed:managedExamsReader)
+### registrationWriter
+![](embed:examTermsManager)
+
