@@ -6,44 +6,36 @@ workspace "EXA2 Workspace" {
 
         examsManager = softwareSystem "Exams Manager" {
 
-
-             userInterface = container "User Interface" "Provides a visual interface for teachers and students" "" "WEB" {
+             userInterface = container "User Interface" "Provides a visual interface for teachers, students, and statisticians" "" "WEB" {
                 tags "UI"
             }
 
             examTermsManager = container "Exam Terms Manager" "Manages creation, modification, and reading of exam dates." {
                 termRequestProcessor = component "Term Requests Processor" "The main component that receives and processes requests related to exam schedules"
                 termCreationService = component "Term Creation Service" "Processes requests for creating and updating terms."
-                termRetrievalService = component "Term Retrieval Service" "Provid access to schedules, allowing users to read available schedules from the database"
+                termRetrievalService = component "Term Retrieval Service" "Provides access to schedules, allowing users to read available schedules from the database"
                 databaseConnector = component "Database Connector" "Communicates with the examTermsDB database and provides an interface for reading, writing, and modifying exam schedule data."
                 sisIntegrationAdapter = component "SIS Integration Adapter" "Integrates with the SIS system, sourcing supplementary information necessary for creating new schedules or synchronizing existing ones."
                 validationService1 = component "Validation Service" "Validates schedule data before storing or updating it."
-
-
-
             }
-            registrationManager = container "Exam Registration Manager" "Handles both reading and writing of student registrations for exams." {
 
+            registrationManager = container "Exam Registration Manager" "Handles both reading and writing of student registrations for exams." {
                 registrationRequestProcessor = component "Registration Request Processor" "Processes requests for reading and writing student exam registrations"
-                registrationService = component "Registration Service" "Stores new registrations, processes cancellation requests and all related operations"
+                registrationService = component "Registration Service" "Stores new registrations, processes cancellation requests, and all related operations"
                 registrationQueryService = component "Registration Query Service" "Provides access to stored registrations, ensuring the reading of existing exam registration data"
                 databaseConnectorReg = component "Database Connector" "Communicates with the examTermsDB database to access registration data"
                 sisIntegrationAdapterReg = component "SIS Integration Adapter"
-                validationServiceReg = component "Validation service" "Validates registration data"
-
+                validationServiceReg = component "Validation Service" "Validates registration data"
             }
+
             resultsManager = container "Results Manager" "Handles both reading and writing of exam results and credit records." {
                 resultsProcessor = component "Results Processor" "Manages requests for creating, updating, and reading exam results"
                 resultWriter = component "Result Writer" "Writes exam results and credits to the database"
                 resultReader = component "Result Reader" "Provides access to stored exam results and credit information from the database"
                 databaseConnectorResult = component "Database Connector" "Connects to the resultsDB database for reading and writing result data"
-                sisIntegrationAdapterResult = component "Sis Integration Adapter"
+                sisIntegrationAdapterResult = component "SIS Integration Adapter"
                 validationServiceForResults = component "Validation Service"
-
             }
-
-
-
 
             examTermsDB = container "Exam Terms Database" {
                 tags "Database"
@@ -63,16 +55,17 @@ workspace "EXA2 Workspace" {
         # Stakeholders
         teacher = person "Teacher"
         student = person "Student"
+        statistician = person "Statistician" "Analyzes exam result data for trends and performance metrics"
 
         ## relationships of examsManager containers
 
-
         teacher -> userInterface "Creates exam terms and awards grades/credits"
         student -> userInterface "Registers for exam terms and views exam results"
+        statistician -> userInterface "Accesses exam results and analytics data"
 
-        userInterface -> examTermsManager "Send requests to"
-        userInterface -> registrationManager "Send requests to"
-        userInterface -> resultsManager "Send requests to"
+        userInterface -> examTermsManager "Sends requests to"
+        userInterface -> registrationManager "Sends requests to"
+        userInterface -> resultsManager "Sends requests to"
 
         resultsManager -> resultsDB "reads from/writes to"
         registrationManager -> examTermsDB "reads from/writes to"
@@ -91,7 +84,7 @@ workspace "EXA2 Workspace" {
         sisIntegrationAdapter -> sis "API calls to SIS"
         databaseConnector -> examTermsDB
 
-        userInterface -> termRequestProcessor "send requests to"
+        userInterface -> termRequestProcessor "sends requests to"
 
         registrationRequestProcessor -> registrationService "Routes create/cancel registration requests"
         registrationRequestProcessor -> registrationQueryService "Routes read registration requests"
@@ -102,7 +95,7 @@ workspace "EXA2 Workspace" {
         sisIntegrationAdapterReg -> sis "API calls to SIS"
         databaseConnectorReg -> examTermsDB
 
-        userInterface -> registrationRequestProcessor "send requests to"
+        userInterface -> registrationRequestProcessor "sends requests to"
 
         resultsProcessor -> resultWriter "Routes write requests to"
         resultsProcessor -> resultReader "Routes read requests to"
@@ -113,26 +106,7 @@ workspace "EXA2 Workspace" {
         resultReader -> databaseConnectorResult "Reads from resultsDB"
         databaseConnectorResult -> resultsDB
 
-        userInterface -> resultsProcessor "send requests to"
-
-
-
-
-
-
-        # examsManager -> sis "Makes API calls to read from"
-
-        ### relationships of managedExamsReader components
-
-        ### relationships of examsWriter components
-
-        ### relationships of resultsWriter components
-
-        ### relationships of registeredExamsReader components
-
-        ### relationships of registrationWriter components
-
-        ### relationships of resultsReader components
+        userInterface -> resultsProcessor "sends requests to"
 
     }
 
@@ -147,30 +121,20 @@ workspace "EXA2 Workspace" {
             autolayout lr
         }
 
-        #component userInterface "userInterface"{
-        #    include *
-        #    autolayout lr
-        #}
-
-        component resultsManager "resultsReader"{
+        component resultsManager "resultsReader" {
             include *
             autolayout lr
         }
 
-        component registrationManager "registrationManager"{
+        component registrationManager "registrationManager" {
             include *
             autolayout lr
         }
 
-        component examTermsManager "examTermsManager"{
+        component examTermsManager "examTermsManager" {
             include *
             autolayout lr
         }
-
-
-
-
-
 
         styles {
             element "Element" {
@@ -188,17 +152,14 @@ workspace "EXA2 Workspace" {
             element "SIS" {
                 background #575c61
             }
-
-            element "WEB"  {
+            element "WEB" {
                 shape WebBrowser
             }
-
-
         }
     }
 
     configuration {
         scope softwaresystem
     }
-
 }
+
