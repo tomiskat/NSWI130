@@ -45,6 +45,7 @@ workspace "EXA2 Workspace" {
                 tags "Database"
             }
 
+            !docs docs
         }
 
         sis = softwareSystem "SIS" {
