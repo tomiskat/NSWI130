@@ -61,7 +61,7 @@ workspace "EXA2 Workspace" {
 
         teacher -> userInterface "Creates exam terms and awards grades/credits"
         student -> userInterface "Registers for exam terms and views exam results"
-        statistician -> userInterface "Accesses exam results and analytics data"
+        statistician -> userInterface "Accesses exam results and analyzes data"
 
         userInterface -> examTermsManager "Sends requests to"
         userInterface -> registrationManager "Sends requests to"
@@ -135,6 +135,77 @@ workspace "EXA2 Workspace" {
             include *
             autolayout lr
         }
+        
+        dynamic examTermsManager "examTermCreation" {
+            
+            userInterface -> termRequestProcessor "Submits request to create new exam to"
+            termRequestProcessor -> termCreationService "Reroutes to"
+            termCreationService -> validationService1 "Validates term data using"
+            validationService1 -> termCreationService "Returns true if the input is valid"
+            termCreationService -> sisIntegrationAdapter "Queries schedule data"
+            sisIntegrationAdapter -> termCreationService "Returns schedule data"
+            termCreationService -> databaseConnector "If the input is valid and there are no conflicts in schedules, writes new exam term to DB"
+            termCreationService -> termRequestProcessor "Sends back an error or a success message"
+            termRequestProcessor -> userInterface "Displays corresponding message using"
+            
+            autolayout lr
+            
+        }
+        
+        dynamic examTermsManager "examTermRetrieval" {
+            
+            userInterface -> termRequestProcessor "Submits request to read exams a user is signed up for to"
+            termRequestProcessor -> termRetrievalService "Reroutes to"
+            termRetrievalService -> databaseConnector "Queries exam terms data"
+            databaseConnector -> termRetrievalService "Sends back exam terms data"
+            termRetrievalService -> termRequestProcessor "Sends back exam terms data"
+            termRequestProcessor -> userInterface "Displays exam terms using"
+            
+            autolayout lr
+        }
+        
+        dynamic registrationManager "examTermRegistration" {
+            
+            userInterface -> RegistrationRequestProcessor "Submits request to read available exam terms to"
+            RegistrationRequestProcessor -> registrationQueryService "Reroutes to"
+            registrationQueryService -> databaseConnectorReg "Queries exam terms data"
+            databaseConnectorReg -> registrationQueryService "Sends back exam terms data"
+            registrationQueryService -> RegistrationRequestProcessor "Sends back exam terms data"
+            RegistrationRequestProcessor -> userInterface "Displays available exam terms"
+            userInterface -> RegistrationRequestProcessor "Submits request to register for a specific exam term"
+            RegistrationRequestProcessor -> registrationService "Reroutes to"
+            registrationService -> validationServiceReg "Validates registration data"
+            registrationService -> databaseConnectorReg "If the input is valid, writes to DB"
+            registrationService -> RegistrationRequestProcessor "Sends back an error or a success message"
+            RegistrationRequestProcessor -> userInterface "Displays corresponding message using"
+            
+            autolayout lr
+        }
+        
+        dynamic resultsManager "examResultsWriting" {
+            
+            userInterface -> resultsProcessor "Submits request to write exam results"
+            resultsProcessor -> resultWriter "Reroutes to"
+            resultWriter -> validationServiceForResults "Validates data using"
+            validationServiceForResults -> resultWriter "Returns true if the input is valid"
+            resultWriter -> databaseConnectorResult "If the input is valid, writes the results to DB"
+            resultWriter -> resultsProcessor "Sends back an error or a success message"
+            resultsProcessor -> userInterface "Displays corresponding message using"
+            
+            autolayout lr
+        }
+        
+        dynamic resultsManager "examResultsReading" {
+            
+            userInterface -> resultsProcessor "Submits request to read exam results"
+            resultsProcessor -> resultReader "Reroutes to"
+            resultReader -> databaseConnectorResult "Queries exam results data"
+            databaseConnectorResult -> resultReader "Sends back exam results data"
+            resultReader -> resultsProcessor "Sends back exam results data"
+            resultsProcessor -> userInterface "Displays exam results using"
+            
+            autolayout lr
+        }
 
         styles {
             element "Element" {
@@ -162,4 +233,3 @@ workspace "EXA2 Workspace" {
         scope softwaresystem
     }
 }
-
