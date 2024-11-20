@@ -1,5 +1,5 @@
 ## Components
-### userInterface
+### resultsReader
 ![](embed:resultsReader)
 
 ### examsWriter
