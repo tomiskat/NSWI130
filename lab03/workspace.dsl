@@ -107,7 +107,54 @@ workspace "EXA2 Workspace" {
         databaseConnectorResult -> resultsDB
 
         userInterface -> resultsProcessor "sends requests to"
-
+        
+        deploymentEnvironment "Testing" {
+            deploymentNode "User Device" "" "Device used by user"{
+                containerInstance userInterface
+            }
+            deploymentNode "Results Manager Server" "" "Ubuntu 18.04 LTS" {
+                containerInstance resultsManager
+            }
+            deploymentNode "Terms Manager Server" "" "Ubuntu 18.04 LTS" {
+                containerInstance examTermsManager
+            }
+            deploymentNode "Registration Manager Server" "" "Ubuntu 18.04 LTS" {
+                containerInstance registrationManager
+            }
+            deploymentNode "Database Server" "" "Ubuntu 18.04 LTS" {
+                deploymentNode "Terms Database Server" "" "Oracle 19.1.0"{
+                    containerInstance examTermsDB
+                }
+                deploymentNode "Results Database Server" "" "Oracle 19.1.0"{
+                    containerInstance resultsDB
+                }
+            }
+        }
+        
+        deploymentEnvironment "Production" {
+            deploymentNode "User Device" "" "Device used by user"{
+                containerInstance userInterface
+            }
+            deploymentNode "Aplication Server" {
+                deploymentNode "Results Manager Server" "" "Ubuntu 18.04 LTS" {
+                    containerInstance resultsManager
+                }
+                deploymentNode "Terms Manager Server" "" "Ubuntu 18.04 LTS" {
+                    containerInstance examTermsManager
+                }
+                deploymentNode "Registration Manager Server" "" "Ubuntu 18.04 LTS" {
+                    containerInstance registrationManager
+                }
+            }
+            deploymentNode "Database Server" "" "Ubuntu 18.04 LTS" {
+                deploymentNode "Terms Database Server" "" "Oracle 19.1.0"{
+                    containerInstance examTermsDB
+                }
+                deploymentNode "Results Database Server" "" "Oracle 19.1.0"{
+                    containerInstance resultsDB
+                }
+            }
+        }
     }
 
     views {
@@ -132,6 +179,16 @@ workspace "EXA2 Workspace" {
         }
 
         component examTermsManager "examTermsManager" {
+            include *
+            autolayout lr
+        }
+        
+        deployment examsManager "Testing" "TestingDeployment" {
+            include *
+            autolayout lr
+        }
+        
+        deployment examsManager "Production" "ProductionDeployment" {
             include *
             autolayout lr
         }
