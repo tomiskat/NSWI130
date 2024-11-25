@@ -12,20 +12,20 @@ workspace "EXA2 Workspace" {
 
             examTermsManager = container "Exam Terms Manager" "Manages creation, modification, and reading of exam dates." {
                 termRequestProcessor = component "Term Requests Processor" "The main component that receives and processes requests related to exam schedules"
-                termCreationService = component "Term Creation Service" "Processes requests for creating and updating terms."
-                termRetrievalService = component "Term Retrieval Service" "Provides access to schedules, allowing users to read available schedules from the database"
+                termCreationHandler = component "Term Creation Handler" "Processes requests for creating and updating terms."
+                termRetrievalHandler = component "Term Retrieval Handler" "Provides access to schedules, allowing users to read available schedules from the database"
                 databaseConnector = component "Database Connector" "Communicates with the examTermsDB database and provides an interface for reading, writing, and modifying exam schedule data."
                 sisIntegrationAdapter = component "SIS Integration Adapter" "Integrates with the SIS system, sourcing supplementary information necessary for creating new schedules or synchronizing existing ones."
-                validationService1 = component "Validation Service" "Validates schedule data before storing or updating it."
+                validationHandler1 = component "Validation Handler" "Validates schedule data before storing or updating it."
             }
 
             registrationManager = container "Exam Registration Manager" "Handles both reading and writing of student registrations for exams." {
                 registrationRequestProcessor = component "Registration Request Processor" "Processes requests for reading and writing student exam registrations"
-                registrationService = component "Registration Service" "Stores new registrations, processes cancellation requests, and all related operations"
-                registrationQueryService = component "Registration Query Service" "Provides access to stored registrations, ensuring the reading of existing exam registration data"
+                registrationHandler = component "Registration Handler" "Stores new registrations, processes cancellation requests, and all related operations"
+                registrationQueryHandler = component "Registration Query Handler" "Provides access to stored registrations, ensuring the reading of existing exam registration data"
                 databaseConnectorReg = component "Database Connector" "Communicates with the examTermsDB database to access registration data"
                 sisIntegrationAdapterReg = component "SIS Integration Adapter"
-                validationServiceReg = component "Validation Service" "Validates registration data"
+                validationHandlerReg = component "Validation Handler" "Validates registration data"
             }
 
             resultsManager = container "Results Manager" "Handles both reading and writing of exam results and credit records." {
@@ -34,7 +34,7 @@ workspace "EXA2 Workspace" {
                 resultReader = component "Result Reader" "Provides access to stored exam results and credit information from the database"
                 databaseConnectorResult = component "Database Connector" "Connects to the resultsDB database for reading and writing result data"
                 sisIntegrationAdapterResult = component "SIS Integration Adapter"
-                validationServiceForResults = component "Validation Service"
+                validationHandlerForResults = component "Validation Handler"
             }
 
             examTermsDB = container "Exam Terms Database" {
@@ -75,23 +75,23 @@ workspace "EXA2 Workspace" {
         registrationManager -> sis
         examTermsManager -> sis
 
-        termRequestProcessor -> termCreationService "Routes create/update requests to"
-        termRequestProcessor -> termRetrievalService "Routes read requests"
-        termCreationService -> validationService1 "Validates term data"
-        termCreationService -> sisIntegrationAdapter "Synchronizes with SIS"
-        termCreationService -> databaseConnector "Writes to examTermsDB"
-        termRetrievalService -> databaseConnector "Reads from examTermsDB"
+        termRequestProcessor -> termCreationHandler "Routes create/update requests to"
+        termRequestProcessor -> termRetrievalHandler "Routes read requests"
+        termCreationHandler -> validationHandler1 "Validates term data"
+        termCreationHandler -> sisIntegrationAdapter "Synchronizes with SIS"
+        termCreationHandler -> databaseConnector "Writes to examTermsDB"
+        termRetrievalHandler -> databaseConnector "Reads from examTermsDB"
         sisIntegrationAdapter -> sis "API calls to SIS"
         databaseConnector -> examTermsDB
 
         userInterface -> termRequestProcessor "sends requests to"
 
-        registrationRequestProcessor -> registrationService "Routes create/cancel registration requests"
-        registrationRequestProcessor -> registrationQueryService "Routes read registration requests"
-        registrationService -> validationServiceReg "Validates registration data"
-        registrationService -> sisIntegrationAdapterReg "Synchronizes with SIS"
-        registrationService -> databaseConnectorReg "Writes to examTermsDB"
-        registrationQueryService -> databaseConnectorReg "Reads from examTermsDB"
+        registrationRequestProcessor -> registrationHandler "Routes create/cancel registration requests"
+        registrationRequestProcessor -> registrationQueryHandler "Routes read registration requests"
+        registrationHandler -> validationHandlerReg "Validates registration data"
+        registrationHandler -> sisIntegrationAdapterReg "Synchronizes with SIS"
+        registrationHandler -> databaseConnectorReg "Writes to examTermsDB"
+        registrationQueryHandler -> databaseConnectorReg "Reads from examTermsDB"
         sisIntegrationAdapterReg -> sis "API calls to SIS"
         databaseConnectorReg -> examTermsDB
 
@@ -99,7 +99,7 @@ workspace "EXA2 Workspace" {
 
         resultsProcessor -> resultWriter "Routes write requests to"
         resultsProcessor -> resultReader "Routes read requests to"
-        resultWriter -> validationServiceForResults "Validates results data"
+        resultWriter -> validationHandlerForResults "Validates results data"
         resultWriter -> sisIntegrationAdapterResult "Synchronizes with SIS"
         sisIntegrationAdapterResult -> sis "API calls to SIS"
         resultWriter -> databaseConnectorResult "Writes to resultsDB"
@@ -196,13 +196,13 @@ workspace "EXA2 Workspace" {
         dynamic examTermsManager "examTermCreation" {
             
             userInterface -> termRequestProcessor "Submits request to create new exam to"
-            termRequestProcessor -> termCreationService "Reroutes to"
-            termCreationService -> validationService1 "Validates term data using"
-            validationService1 -> termCreationService "Returns true if the input is valid"
-            termCreationService -> sisIntegrationAdapter "Queries schedule data"
-            sisIntegrationAdapter -> termCreationService "Returns schedule data"
-            termCreationService -> databaseConnector "If the input is valid and there are no conflicts in schedules, writes new exam term to DB"
-            termCreationService -> termRequestProcessor "Sends back an error or a success message"
+            termRequestProcessor -> termCreationHandler "Reroutes to"
+            termCreationHandler -> validationHandler1 "Validates term data using"
+            validationHandler1 -> termCreationHandler "Returns true if the input is valid"
+            termCreationHandler -> sisIntegrationAdapter "Queries schedule data"
+            sisIntegrationAdapter -> termCreationHandler "Returns schedule data"
+            termCreationHandler -> databaseConnector "If the input is valid and there are no conflicts in schedules, writes new exam term to DB"
+            termCreationHandler -> termRequestProcessor "Sends back an error or a success message"
             termRequestProcessor -> userInterface "Displays corresponding message using"
             
             autolayout lr
@@ -212,10 +212,10 @@ workspace "EXA2 Workspace" {
         dynamic examTermsManager "examTermRetrieval" {
             
             userInterface -> termRequestProcessor "Submits request to read exams a user is signed up for to"
-            termRequestProcessor -> termRetrievalService "Reroutes to"
-            termRetrievalService -> databaseConnector "Queries exam terms data"
-            databaseConnector -> termRetrievalService "Sends back exam terms data"
-            termRetrievalService -> termRequestProcessor "Sends back exam terms data"
+            termRequestProcessor -> termRetrievalHandler "Reroutes to"
+            termRetrievalHandler -> databaseConnector "Queries exam terms data"
+            databaseConnector -> termRetrievalHandler "Sends back exam terms data"
+            termRetrievalHandler -> termRequestProcessor "Sends back exam terms data"
             termRequestProcessor -> userInterface "Displays exam terms using"
             
             autolayout lr
@@ -224,16 +224,16 @@ workspace "EXA2 Workspace" {
         dynamic registrationManager "examTermRegistration" {
             
             userInterface -> RegistrationRequestProcessor "Submits request to read available exam terms to"
-            RegistrationRequestProcessor -> registrationQueryService "Reroutes to"
-            registrationQueryService -> databaseConnectorReg "Queries exam terms data"
-            databaseConnectorReg -> registrationQueryService "Sends back exam terms data"
-            registrationQueryService -> RegistrationRequestProcessor "Sends back exam terms data"
+            RegistrationRequestProcessor -> registrationQueryHandler "Reroutes to"
+            registrationQueryHandler -> databaseConnectorReg "Queries exam terms data"
+            databaseConnectorReg -> registrationQueryHandler "Sends back exam terms data"
+            registrationQueryHandler -> RegistrationRequestProcessor "Sends back exam terms data"
             RegistrationRequestProcessor -> userInterface "Displays available exam terms"
             userInterface -> RegistrationRequestProcessor "Submits request to register for a specific exam term"
-            RegistrationRequestProcessor -> registrationService "Reroutes to"
-            registrationService -> validationServiceReg "Validates registration data"
-            registrationService -> databaseConnectorReg "If the input is valid, writes to DB"
-            registrationService -> RegistrationRequestProcessor "Sends back an error or a success message"
+            RegistrationRequestProcessor -> registrationHandler "Reroutes to"
+            registrationHandler -> validationHandlerReg "Validates registration data"
+            registrationHandler -> databaseConnectorReg "If the input is valid, writes to DB"
+            registrationHandler -> RegistrationRequestProcessor "Sends back an error or a success message"
             RegistrationRequestProcessor -> userInterface "Displays corresponding message using"
             
             autolayout lr
@@ -243,8 +243,8 @@ workspace "EXA2 Workspace" {
             
             userInterface -> resultsProcessor "Submits request to write exam results"
             resultsProcessor -> resultWriter "Reroutes to"
-            resultWriter -> validationServiceForResults "Validates data using"
-            validationServiceForResults -> resultWriter "Returns true if the input is valid"
+            resultWriter -> validationHandlerForResults "Validates data using"
+            validationHandlerForResults -> resultWriter "Returns true if the input is valid"
             resultWriter -> databaseConnectorResult "If the input is valid, writes the results to DB"
             resultWriter -> resultsProcessor "Sends back an error or a success message"
             resultsProcessor -> userInterface "Displays corresponding message using"
