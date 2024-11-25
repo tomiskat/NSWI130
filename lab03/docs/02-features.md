@@ -24,6 +24,15 @@ As a teacher, I want to create and manage exams and everything regarding them so
 - Allow only authorized users (teachers) to create or manage exams.
 - Ensure that only the teacher who created the exam can modify or delete it, unless overridden by an administrator.
 
+**Components Involved**:
+  - Term Request Processor
+  - Term Creation Handler
+  - Validation Handler1
+  - Database Connector
+  - SIS Integration Adapter
+
+**Database Interaction**: Direct interaction with `ExamTermsDB` for storing and retrieving exam term data.
+
 ---
 
 ### Feature: Registering for exam terms
@@ -47,6 +56,16 @@ As a student, I want to register for exam terms so that I can secure my spot for
 - Display a confirmation message upon successful registration or an error message if registration fails.
 - Dynamically update the number of available spots for each exam term as students register.
 - Ensure that only authenticated and authorized students can view and register for exam terms.
+
+**Components Involved**:
+  - Registration Request Processor
+  - Registration Handler
+  - Registration Query Handler
+  - Validation HandlerReg
+  - Database ConnectorReg
+  - SIS Integration AdapterReg
+
+**Database Interaction**: Utilizes `ExamTermsDB` to manage registration data.
 
 
 ---
@@ -77,6 +96,14 @@ As a teacher, I want to award students their credits/grades after they have succ
 - Provide confirmation messages upon successful saving of grades or detailed error messages if saving fails.
 - Ensure that only authorized teachers can access the grade/credit awarding feature.
 
+**Components Involved**:
+  - Results Processor
+  - Result Writer
+  - Validation HandlerForResults
+  - Database ConnectorResult
+  - SIS Integration AdapterResult
+
+**Database Interaction**: Interacts with `ResultsDB` for storing and retrieving grade data.
 
 ---
 
@@ -102,6 +129,12 @@ As a student or teacher, I want to view the exam results so that I can track aca
 - Offer filters (by exam date or subject) for teachers and students.
 - Ensure grades, credits, and student names are properly formatted.
 
+**Components Involved**:
+  - Result Reader
+  - Database ConnectorResult
+
+**Database Interaction**: Queries `ResultsDB` to fetch and display results.
+
 ---
 
 ### Feature: Viewing Exams Student is Enrolled
@@ -125,3 +158,10 @@ As a student, I want to view the exams I am enrolled in so that I can track my u
 - The system queries the database to retrieve all exams the student is registered for, filtering by their student ID.
 - Ensure that only exams where the student is successfully enrolled are shown.
 - Ensure the list is updated in real-time, reflecting any changes such as cancellations, rescheduled exams, or new enrollments.
+
+**Components Involved**:
+  - Registration Query Handler
+  - Database ConnectorReg
+
+**Database Interaction**: Retrieves data from `ExamTermsDB` related to student registrations.
+
