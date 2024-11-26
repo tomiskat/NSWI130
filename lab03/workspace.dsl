@@ -264,26 +264,7 @@ workspace "EXA2 Workspace" {
             autolayout lr
         }
 
-        styles {
-            element "Element" {
-                background #1168bd
-                color #ffffff
-                shape RoundedBox
-            }
-            element "Person" {
-                background #0a3b6b
-                shape person
-            }
-            element "Database" {
-                shape cylinder
-            }
-            element "SIS" {
-                background #575c61
-            }
-            element "WEB" {
-                shape WebBrowser
-            }
-        }
+        theme default
     }
 
     configuration {
