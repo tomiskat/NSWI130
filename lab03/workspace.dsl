@@ -6,9 +6,11 @@ workspace "EXA2 Workspace" {
 
         examsManager = softwareSystem "Exams Manager" {
 
-             userInterface = container "User Interface" "Provides a visual interface for teachers, students, and statisticians" "" "WEB" {
-                tags "UI"
-            }
+             userInterface = container "User Interface" "Provides a visual interface to interact with the system" "" "MULTI-PLATFORM" {
+                mobileApplication = component "Mobile Application" "mobile app"
+                webApplication = component "Web Application" "web app"
+             }
+
 
             examTermsManager = container "Exam Terms Manager" "Manages creation, modification, and reading of exam dates." {
                 termRequestProcessor = component "Term Requests Processor" "The main component that receives and processes requests related to exam schedules"
@@ -168,7 +170,12 @@ workspace "EXA2 Workspace" {
             autolayout lr
         }
 
-        component resultsManager "resultsReader" {
+        component userInterface "userInterface" {
+            include *
+            autolayout lr
+        }
+
+        component resultsManager "resultsManager" {
             include *
             autolayout lr
         }

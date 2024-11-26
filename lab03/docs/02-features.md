@@ -1,5 +1,9 @@
 ## Features
 
+**Work distribution:**
+
+Created together during labs, last feature and involved components added by @Jan Svojanský
+
 ### Feature: Exam managment
 As a teacher, I want to create and manage exams and everything regarding them so that I can conduct exams at suitable times, locations, etc.
 
