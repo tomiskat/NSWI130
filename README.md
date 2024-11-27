@@ -13,6 +13,6 @@
 - running model using docker
     - clone repository
     - download and run docker deamon (https://www.docker.com/)
-    - from repository root run `sh lab03/docker.sh`
+    - from lab03 directory run `sh lab03/docker.sh`
     - your model should now be running at http://localhost:8080/
 - copy content of [workspace.dsl](workspace.dsl) into https://structurizr.com/dsl and press render button (model levels will not contain description)
