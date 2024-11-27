@@ -123,13 +123,9 @@ workspace "EXA2 Workspace" {
             deploymentNode "Registration Manager Server" "" "Ubuntu 18.04 LTS" {
                 containerInstance registrationManager
             }
-            deploymentNode "Database Server" "" "Ubuntu 18.04 LTS" {
-                deploymentNode "Terms Database Server" "" "Oracle 19.1.0"{
-                    containerInstance examTermsDB
-                }
-                deploymentNode "Results Database Server" "" "Oracle 19.1.0"{
-                    containerInstance resultsDB
-                }
+            deploymentNode "Database Server" "" "Oracle 19.1.0" {
+                containerInstance examTermsDB
+                containerInstance resultsDB
             }
         }
         
@@ -137,22 +133,18 @@ workspace "EXA2 Workspace" {
             deploymentNode "User Device" "" "Device used by user"{
                 containerInstance userInterface
             }
-            deploymentNode "Aplication Server" {
-                deploymentNode "Results Manager Server" "" "Ubuntu 18.04 LTS" {
+            deploymentNode "Cloud Environmet" "" "AWS" {
+                deploymentNode "Results Manager Server" "" "Amazon EC2 instance" {
                     containerInstance resultsManager
                 }
-                deploymentNode "Terms Manager Server" "" "Ubuntu 18.04 LTS" {
+                deploymentNode "Terms Manager Server" "" "Amazon EC2 instance" {
                     containerInstance examTermsManager
                 }
-                deploymentNode "Registration Manager Server" "" "Ubuntu 18.04 LTS" {
+                deploymentNode "Registration Manager Server" "" "Amazon EC2 instance" {
                     containerInstance registrationManager
                 }
-            }
-            deploymentNode "Database Server" "" "Ubuntu 18.04 LTS" {
-                deploymentNode "Terms Database Server" "" "Oracle 19.1.0"{
+                deploymentNode "Database Server" "" "Amazon RDS instance" {
                     containerInstance examTermsDB
-                }
-                deploymentNode "Results Database Server" "" "Oracle 19.1.0"{
                     containerInstance resultsDB
                 }
             }
@@ -278,3 +270,4 @@ workspace "EXA2 Workspace" {
         scope softwaresystem
     }
 }
+

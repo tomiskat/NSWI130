@@ -12,9 +12,5 @@ This setup ensures functionality and performance before the system moves to prod
 ![](embed:TestingDeployment)
 
 ### ProductionDeployment
-In the production environment, the system is deployed similarly but focuses on stability, scalability, and 
-security for live usage. The user device interfaces with application servers running the results manager, 
-terms manager, and registration manager on Ubuntu 18.04 LTS. The database servers, also on Ubuntu 18.04 LTS,
-handle both terms and results databases using Oracle 19.1.0. Regular monitoring and maintenance ensure 
-continued performance in the live environment.
+In the production environment, the system is deployed similarly but focuses on stability, scalability, and security for live usage. The user device interfaces with application servers running in the AWS cloud environment. The results manager, terms manager, and registration manager as Amazon EC2 instances and the database server handling both terms and results databases as Amazon RDS instances.
 ![](embed:ProductionDeployment)
