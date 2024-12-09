@@ -6,15 +6,15 @@ The speed and efficiency with which the system performs its intended functions. 
 
 | Key                | Value |
 |--------------------|-------|
-| Source of Stimulus |       |
-| Stimulus           |       |
-| Artifact           |       |
-| Environment        |       |
-| Response           |       |
-| Measure            |       |
+| Source of Stimulus | Web Application |
+| Stimulus           | Searches for available courses |
+| Artifact           | Enrolment manager |
+| Environment        | High workload(e.g. start of semester) |
+| Response           | Results are displayed promptly. |
+| Measure            | Response time is under 1 second fo all users |
 
 ### Conclusion
-
+✅
 
 ### Reason/Solution
-, it might be benefitial to move more logic to server side, so that the apps don't eventually blow up to contain too much logic, as they should be expected to run on weaker devices.
+Database quering is optimized with caching of frequently accessed data.
