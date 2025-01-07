@@ -2,6 +2,9 @@
 
 The system should be easy for students and teachers to use, with a clear and intuitive user interface and straightforward navigation.
 
+### Type
+**Design-time**
+
 ### Scenario
 
 | Key                | Value |

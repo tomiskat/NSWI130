@@ -2,6 +2,14 @@
 
 The system should be easy to test for correctness and performance, with automated testing tools and practices in place and a testable design that allows for thorough testing.
 
+### Type
+**Design-time**
+
+### Authors
+- Tadeáš Tomiška
+- Adam Bruzl
+- Stanislav Dochynets
+
 ### Scenario
 
 | Key                | Value                                                    |

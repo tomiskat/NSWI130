@@ -2,6 +2,14 @@
 
 The ability of the system to communicate and exchange data with other systems or components. This might include factors such as the use of industry-standard protocols and data formats, the availability of documentation and other resources to support integration with other systems, and the overall compatibility of the system with other systems and components.
 
+### Type
+**Design-time**
+
+### Authors
+- Tadeáš Tomiška
+- Adam Bruzl
+- Stanislav Dochynets
+
 ### Scenario
 
 | Key                | Value                                      |
