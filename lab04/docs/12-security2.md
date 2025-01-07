@@ -5,6 +5,10 @@ The system should be secure, with secure authentication and authorization protoc
 ### Type
 **Run-time**
 
+**Authors:**
+- Jan Jevčák
+- Jan Svojanský
+
 ### Scenario
 
 | Key                | Value |

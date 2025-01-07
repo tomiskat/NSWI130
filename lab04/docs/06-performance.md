@@ -5,6 +5,10 @@ The speed and efficiency with which the system performs its intended functions. 
 ### Type
 **Run-time**
 
+**Authors:**
+- Jan Jevčák
+- Jan Svojanský
+
 ### Scenario
 
 | Key                | Value |

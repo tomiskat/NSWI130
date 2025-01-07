@@ -5,6 +5,10 @@ The system should be easy for students and teachers to use, with a clear and int
 ### Type
 **Design-time**
 
+**Authors:**
+- Jan Jevčák
+- Jan Svojanský
+
 ### Scenario
 
 | Key                | Value |

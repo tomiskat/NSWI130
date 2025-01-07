@@ -5,6 +5,10 @@ The system should be able to handle increased workload without degradation in pe
 ### Type
 **Run-time**
 
+**Authors:**
+- Jan Jevčák
+- Jan Svojanský
+
 ### Scenario
 
 | Key                | Value |
