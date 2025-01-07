@@ -1,4 +1,4 @@
-## Availability
+## Availability 2
 
 The degree to which the system is available to users when needed. This might include factors such as the reliability of the hardware and software components, the use of redundant or backup systems to ensure availability in the event of failures, and the use of load balancing and other techniques to ensure that the system can handle high levels of demand.
 
