@@ -21,7 +21,7 @@ The speed and efficiency with which the system performs its intended functions. 
 | Measure            | Response time is under 1 second fo all users |
 
 ### Conclusion
-✅
+❌
 
 ### Reason/Solution
-Database quering is optimized with caching of frequently accessed data.
+Database quering could be optimized with caching of frequently accessed data.
