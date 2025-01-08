@@ -183,7 +183,7 @@ workspace "ENR System Workspace" "This workspace documents the architecture of t
 
             webApp -> student "Notifies about success and enrollment confirmation or failure"
 
-            autolayout lr
+            autolayout tb
         }
         // Samuel Koribanic
         dynamic enr_system "ViewEnrolledSubjects" {
