@@ -10,7 +10,7 @@
 
 **Models**
 - Our model: [exams-managment-system](lab03/documentation.html)
-- Model to review: [enrollment-system](lab04/documentation.html)
+- Model to review: [enrollment-system](lab04/presentation.html)
 - running models using docker
     - clone repository
     - download and run docker deamon (https://www.docker.com/)
