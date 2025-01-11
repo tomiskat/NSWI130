@@ -20,7 +20,7 @@ technologies and practices, and the availability of documentation and other reso
 | Stimulus           | Add new subject enrollment rule (etc. limit number of enrolled subjects) |
 | Artifact           | Enrollment Manager [Container]                                           |
 | Environment        | Runtime                                                                  |
-| Response           | Rule successfully modified                                               |
+| Response           | Rule successfully added                                                  |
 | Measure            | Change affects only 1 container                                          |
 
 ### Conclusion
