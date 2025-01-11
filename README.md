@@ -8,11 +8,15 @@
 - Stanislav Dochynets
 
 
-**Reading model**
-- [exams-managment-system](lab03/documentation.html)
-- running model using docker
+**Models**
+- Our model: [exams-managment-system](lab03/documentation.html)
+- Model to review: [enrollment-system](lab04/documentation.html)
+- running models using docker
     - clone repository
     - download and run docker deamon (https://www.docker.com/)
-    - from lab03 directory run `sh lab03/docker.sh`
+    - from lab03/lab04 directory run `sh docker.sh`
     - your model should now be running at http://localhost:8080/
-- copy content of [workspace.dsl](workspace.dsl) into https://structurizr.com/dsl and press render button (model levels will not contain description)
+- running models using structurizr
+  - copy content of file `workspace.dsl` into https://structurizr.com/dsl 
+  - remove string `docs!` from code
+  - press render button (Note: model levels will not contain description.)
