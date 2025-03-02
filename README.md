@@ -1,4 +1,4 @@
-# NSWI130 - Exams Management System
+# Exams Management System
 
 **Team members**
 - Tadeáš Tomiška
