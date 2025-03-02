@@ -1,24 +1,24 @@
 **Students**
-- Přihlášení se na zkoušku
-    - zobrazení termínů
-    - výběr konkrétního termínu
-    - čekací listina s možností nastavit prioritu
-- Zobrazení termínů, na které je student přihlášený
-- Upozornění na nový termín
-- Upozornění na změnu termínu
-- Odhlášení se z termínu
-- Zobrazení výsledků
-- Automatické přihlášení na zkoušku (v systému nastavím, že jakmile je zveřejněn termín v nějakém časovém období od daného vyučujícího, chci být přihlášen)
+- Register for an exam
+  - View available exam dates
+  - Select a specific exam date
+  - Waiting list with the option to set priority
+- View the dates the student is registered for
+- Notification of a new exam date
+- Notification of a change in the exam date
+- Unregister from an exam date
+- View results
+- Automatic exam registration (the system is set to automatically register a student for an exam once the exam date is published within a specified time frame by the instructor)
 
 **Teachers**
-- Vypisování termínů
-    - Rezervace místnosti
-    - Nastavení atributů termínů (kapacity, hodina, datum do kdy se přihlásit/odhlásit, prioritizace studentů, kteří mají ještě všechny pokusu zkoušku složit před studenty jdoucími na druhý/třetí termín)
-- Změna parametrů termínu
-- Zapisování výsledků
-    - Možnost upravit výsledek (historie změn)
-- Zobrazení předmětů, kde je učitel zkoušejícím (př. Garant předmětu vypíše několik zkoušek pro daný předmět a pro každý předmět přířadí jako zkoušejícího nějakého cvičícího daného předmětu)
+- Create exam dates
+  - Book a room
+  - Set exam date attributes (capacity, time, registration deadline, prioritization of students who have yet to pass all their attempts before those who are attending a second/third exam date)
+- Modify exam date parameters
+- Record results
+  - Option to edit the result (with change history)
+- View courses where the teacher is an examiner (e.g., a course coordinator creates multiple exams for a course and assigns a specific teaching assistant as the examiner for each exam)
 
-**Vedení školy**
-- Archivace výsledků (například pro prohlížení úspěšnosti daného předmětu)
-- Zrušení termínu (např. povodeň)
+**School Management**
+- Archive results (for example, to analyze the success rate of a specific course)
+- Cancel an exam date (e.g., due to a flood)
